@@ -4,5 +4,5 @@
 <p>{{project.user}}</p>
 <p>{{project.id}}</p>
 <a href="{% url 'project' project.title%}">project</a>
-<a href="{% url 'profile' project.user.id%}">profile</a>
+<a href="{% url 'profile' project.user%}">profile</a>
 <img src="{{project.image.url}}" alt="" style="height: 200px; width:auto;"> {% endfor%} {% endblock %}
