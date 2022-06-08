@@ -24,8 +24,8 @@ class Projects(models.Model):
 			return table
 
 	@classmethod
-	def get_by_id(cls, id):
-			table = Projects.objects.get(id=id)
+	def get_by_title(cls, title):
+			table = Projects.objects.get(title=title)
 			return table
 
 
