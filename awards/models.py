@@ -14,13 +14,18 @@ class Projects(models.Model):
 
 	def __str__(self):
 			return self.title
-			
+
 	def save_table(self):
 			self.save()
 
 	@classmethod
 	def get_all(cls):
 			table = Projects.objects.all()
+			return table
+
+	@classmethod
+	def get_by_id(cls, id):
+			table = Projects.objects.get(id=id)
 			return table
 
 

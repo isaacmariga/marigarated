@@ -12,3 +12,9 @@ def home(request):
   title = 'test'
 
   return render(request, 'awards/home.html', {'projects': projects, "title":title})
+
+def project(request, id):
+  project = Projects.get_by_id(id)
+  title = 'test'
+
+  return render(request, 'awards/project.html', {'project': project, "title":title})
