@@ -9,12 +9,17 @@ def welcome(request):
 
 def home(request):
   projects = Projects.get_all()
-  title = 'test'
 
-  return render(request, 'awards/home.html', {'projects': projects, "title":title})
+  return render(request, 'awards/home.html', {'projects': projects})
 
 def project(request, title):
   project = Projects.get_by_title(title)
-  title = 'test'
+  title = project.title
 
   return render(request, 'awards/project.html', {'project': project, "title":title})
+
+# def project(request, title):
+#   project = Projects.get_by_title(title)
+#   title = 'test'
+
+#   return render(request, 'awards/project.html', {'project': project, "title":title})
