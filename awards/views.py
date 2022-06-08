@@ -18,6 +18,11 @@ def project(request, title):
 
 	return render(request, 'awards/project.html', {'project': project, "title":title})
 
+def profile(request, user):
+	profile = Profile.get_by_user(user)
+
+	return render(request, 'awards/profile.html', {'profile': profile, "user":user})
+
 def search_project(request):
 	if 'search_project' in request.GET and request.GET['search_project']:
 		title = request.GET.get('search_project')

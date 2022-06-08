@@ -45,3 +45,8 @@ class Profile(models.Model):
 
 	def save_table(self):
 			self.save()
+
+	@classmethod
+	def get_by_user(cls, user__username):
+			table = Projects.objects.get(user__username=user__username)
+			return table
