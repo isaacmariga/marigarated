@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class Projects(models.Model):
   title = models.CharField(max_length =30)
-  image = models.ImageField(upload_to = '/project_images')
+  image = models.ImageField(upload_to = 'project_images')
   description = models.TextField(max_length =300)
   link = models.URLField(max_length=200)
   user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -20,7 +20,7 @@ class Projects(models.Model):
 
 
 class Profile(models.Model):
-  picture = models.ImageField(upload_to = '/profile_images')
+  picture = models.ImageField(upload_to = 'profile_images')
   bio = models.TextField(max_length =300)
   user = models.ForeignKey(User,on_delete=models.CASCADE)
 
