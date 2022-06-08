@@ -28,6 +28,11 @@ class Projects(models.Model):
 			table = Projects.objects.get(title=title)
 			return table
 
+	@classmethod
+	def filter_by_title(cls, title):
+			table = Projects.objects.filter(title__icontains=title)
+			return table
+
 
 class Profile(models.Model):
 	picture = models.ImageField(upload_to = 'profile_images')
