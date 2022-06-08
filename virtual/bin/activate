@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/mariga/Documents/Code-stuff/Core/Django/marigarated/virtual"
+VIRTUAL_ENV="/home/mariga/Documents/Code-stuff/Core/Django/marigarated/marigarated/virtual"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

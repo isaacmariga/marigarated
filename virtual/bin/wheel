@@ -1,4 +1,4 @@
-#!/home/mariga/Documents/Code-stuff/Core/Django/marigarated/virtual/bin/python
+#!/home/mariga/Documents/Code-stuff/Core/Django/marigarated/marigarated/virtual/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
