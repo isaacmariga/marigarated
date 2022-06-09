@@ -11,13 +11,16 @@
     {% else %}
     <title> Marigagram </title>
     {% endif %} {% block styles %} {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/staticname.css' %}"> {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/staticname.css' %}">
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}"> {% endblock %}
 
 
 </head>
 
 <body>
-    {% include "navbar.html"%} {% block content%}{% block scripts %} {% bootstrap_javascript %} {% endblock %}{% endblock %}
+    {% include "navbar.html"%} {% block content%}{% block scripts %} {% bootstrap_javascript %}
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    {% endblock %}{% endblock %}
 
 
 </body>

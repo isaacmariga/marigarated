@@ -29,8 +29,13 @@ class Projects(models.Model):
 			return table
 
 	@classmethod
-	def filter_by_title(cls, title):
-			table = Projects.objects.filter(title__icontains=title)
+	def get_by_id(cls, id):
+			table = Projects.objects.get(id=id)
+			return table
+
+	@classmethod
+	def filter_by_title(cls, search):
+			table = Projects.objects.filter(title__icontains=search)
 			return table
 
 
@@ -50,3 +55,13 @@ class Profile(models.Model):
 	def get_by_user(cls, user__username):
 			table = Projects.objects.get(user__username=user__username)
 			return table
+
+class Review(models.Model):
+	comment =models.TextField(max_length=300)
+	rate = models.FloatField(default=0)
+	user = models.ForeignKey(User,on_delete=models.CASCADE, null = True, blank=True)
+	project = models.ForeignKey(Projects,on_delete=models.CASCADE, null = True, blank=True)
+
+
+	def __str__(self):
+		return str(self.id)

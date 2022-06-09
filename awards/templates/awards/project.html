@@ -5,3 +5,12 @@
 <p>{{project.user}}</p>
 <p>{{project.id}}</p>
 <img src="{{project.image.url}}" alt="" style="height: 200px; width:auto;"> {% endblock %}
+
+<form class="review-form" action="/review" method="GET">
+    {% for proj in project%}
+    <input type="hidden" name="proj_id" id="proj_id" value="{{proj.id}}" />\ {% endfor%}
+
+    <div class="form-group">
+        <textarea name="comment" id="" cols="30" rows="10" class="input"></textarea>
+    </div>
+</form>
