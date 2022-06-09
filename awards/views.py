@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 from .models import Profile, Projects, Review
+from .forms import ProfileForm, ProjectForm, ReviewForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -13,8 +15,8 @@ def home(request):
 	return render(request, 'awards/home.html', {'projects': projects})
 
 def project(request, id):
-	# project = Projects.get_by_title(title)
 	project = Projects.get_by_id(id)
+	# project = Projects.get_by_id(id)
 	title = project.title
 
 	return render(request, 'awards/project.html', {'project': project, "id":id, 'project':project})
@@ -45,3 +47,53 @@ def Review_rate(request):
 		user = request.user
 		Review(user=user, project=project, comment=comment, rate=rate)
 		return redirect('project', id=proj_id)
+
+
+# @login_required(login_url='/accounts/login/')
+# def project_form(request):
+# 	current_user = request.user		
+# 	if request.method == 'POST':
+# 		form = ProjectForm(request.POST, request.FILES)
+# 		if form.is_valid():
+# 			name = form.save(commit=False)
+# 			name.user = current_user
+# 			name.save()
+# 		return redirect('home')
+# 	else:
+# 		form = ProjectForm()
+			
+# 	return render(request, 'awards/new_project.html', {'form': form})
+
+
+
+@login_required(login_url='/accounts/login/')
+def new_project(request):
+	current_user = request.user
+	if request.method == 'POST':
+		form = ProjectForm(request.POST, request.FILES)
+		if form.is_valid():
+			upload = form.save(commit=False)
+			upload.user = current_user
+			upload.save()
+		return redirect('home')
+	else:
+		form=ProjectForm()
+
+	return render(request, 'awards/new_project.html', {'form': form})
+
+@login_required(login_url='/accounts/login/')
+def review(request, id):
+	current_user = request.user
+	project = Projects.get_by_id(id)
+	if request.method == 'POST':
+		form = ReviewForm(request.POST, request.FILES)
+		if form.is_valid():
+			upload = form.save(commit=False)
+			upload.user = current_user
+			upload.project = project
+			upload.save()
+		return redirect('home')
+	else:
+		form=ReviewForm()
+
+	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project})

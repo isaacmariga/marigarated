@@ -15,7 +15,7 @@ class Projects(models.Model):
 	def __str__(self):
 			return self.title
 
-	def save_table(self):
+	def save_project(self):
 			self.save()
 
 	@classmethod
@@ -56,12 +56,19 @@ class Profile(models.Model):
 			table = Projects.objects.get(user__username=user__username)
 			return table
 
+RATING = (
+(1,'1'),
+(2,'2'),
+(3,'3'),
+(4,'4'),
+(5,'5')
+)
 class Review(models.Model):
 	comment =models.TextField(max_length=300)
-	rate = models.FloatField(default=0)
+	rate = models.CharField(choices=RATING,max_length=300)
 	user = models.ForeignKey(User,on_delete=models.CASCADE, null = True, blank=True)
 	project = models.ForeignKey(Projects,on_delete=models.CASCADE, null = True, blank=True)
 
 
 	def __str__(self):
-		return str(self.id)
+		return self.comment
