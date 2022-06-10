@@ -1,6 +1,8 @@
 from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Avg
+
 
 
 # Create your models here.
@@ -57,18 +59,32 @@ class Profile(models.Model):
 			return table
 
 RATING = (
-(1,'1'),
-(2,'2'),
-(3,'3'),
-(4,'4'),
-(5,'5')
+(1,1),
+(2,2),
+(3,3),
+(4,4),
+(5,5)
 )
 class Review(models.Model):
 	comment =models.TextField(max_length=300)
-	rate = models.CharField(choices=RATING,max_length=300)
+	design_rate = models.IntegerField(choices=RATING,null = True,)
+	content_rate = models.IntegerField(choices=RATING,null = True,)
+	use_rate = models.IntegerField(choices=RATING,null = True,)
 	user = models.ForeignKey(User,on_delete=models.CASCADE, null = True, blank=True)
 	project = models.ForeignKey(Projects,on_delete=models.CASCADE, null = True, blank=True)
 
 
 	def __str__(self):
 		return self.comment
+
+	@classmethod
+	def get_by_project(cls, project):
+			table = Projects.objects.get(project=project)
+			return table
+
+	# @classmethod
+	# def get_Avg(cls):
+	# 		table = Review.objects.all().aggregate(Avg(int(float('design_rate'))))
+	# 		return table
+
+	

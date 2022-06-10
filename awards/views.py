@@ -11,6 +11,7 @@ def welcome(request):
 
 def home(request):
 	projects = Projects.get_all()
+	# avg = Review.get_Avg()
 
 	return render(request, 'awards/home.html', {'projects': projects})
 

@@ -1,6 +1,6 @@
 {% extends 'awards/base.html'%}{% load django_bootstrap5 %} {% block content %} {{block.super}}
 
 <form action="{%url 'review' project.id%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}{% bootstrap_form form%}
+    {%csrf_token%}{{form.as_p}}
     <input type="submit" class="btn btn-success btn-lg" value="Post">
 </form> {% endblock%}

@@ -8,6 +8,8 @@ class ProjectForm(forms.ModelForm):
     exclude = ['user']
 
 
+
+
 class ProfileForm(forms.ModelForm):
   class Meta:
     model = Profile
@@ -18,3 +20,8 @@ class ReviewForm(forms.ModelForm):
   class Meta:
     model = Review
     exclude = ['user', 'project']
+    # fields = ('design_rate',)
+
+    # widget = {
+    #   'design_rate': forms.TextInput(attrs={'class': 'form-control'})
+    # }
