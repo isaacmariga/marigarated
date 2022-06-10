@@ -11,21 +11,28 @@ def welcome(request):
 
 def home(request):
 	projects = Projects.get_all()
-	# avg = Review.get_Avg()
+	d_avg = Review.design_avg()
+	c_avg = Review.content_avg()
+	u_avg = Review.user_avg()
 
-	return render(request, 'awards/home.html', {'projects': projects})
+	title = 'Home'
+	
+
+
+	return render(request, 'awards/home.html', {'projects': projects, 'd_avg':d_avg,'c_avg':c_avg, 'u_avg':u_avg, 'title':title})
 
 def project(request, id):
 	project = Projects.get_by_id(id)
 	# project = Projects.get_by_id(id)
 	title = project.title
 
-	return render(request, 'awards/project.html', {'project': project, "id":id, 'project':project})
+	return render(request, 'awards/project.html', {'project': project, "id":id, 'project':project, 'title':title})
 
 def profile(request, user):
 	profile = Profile.get_by_user(user)
+	title = profile.user
 
-	return render(request, 'awards/profile.html', {'profile': profile, "user":user})
+	return render(request, 'awards/profile.html', {'profile': profile, "user":user, 'title': title})
 
 def search_project(request):
 	if 'search_project' in request.GET and request.GET['search_project']:

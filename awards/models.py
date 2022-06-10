@@ -67,9 +67,9 @@ RATING = (
 )
 class Review(models.Model):
 	comment =models.TextField(max_length=300)
-	design_rate = models.IntegerField(choices=RATING,null = True,)
-	content_rate = models.IntegerField(choices=RATING,null = True,)
-	use_rate = models.IntegerField(choices=RATING,null = True,)
+	design_rating = models.IntegerField(choices=RATING,null = True,)
+	content_rating = models.IntegerField(choices=RATING,null = True,)
+	user_experience_rating = models.IntegerField(choices=RATING,null = True,)
 	user = models.ForeignKey(User,on_delete=models.CASCADE, null = True, blank=True)
 	project = models.ForeignKey(Projects,on_delete=models.CASCADE, null = True, blank=True)
 
@@ -82,9 +82,22 @@ class Review(models.Model):
 			table = Projects.objects.get(project=project)
 			return table
 
-	# @classmethod
-	# def get_Avg(cls):
-	# 		table = Review.objects.all().aggregate(Avg(int(float('design_rate'))))
-	# 		return table
+	@classmethod
+	def design_avg(cls):
+			table = list(Review.objects.all().aggregate(Avg('design_rating')).values())
+			table = round(float("".join(map(str,table))),2)
+			return table
+
+	@classmethod
+	def content_avg(cls):
+			table = list(Review.objects.all().aggregate(Avg('content_rating')).values())
+			table = round(float("".join(map(str,table))),2)
+			return table
+
+	@classmethod
+	def user_avg(cls):
+			table = list(Review.objects.all().aggregate(Avg('user_experience_rating')).values())
+			table = round(float("".join(map(str,table))),2)
+			return table
 
 	
