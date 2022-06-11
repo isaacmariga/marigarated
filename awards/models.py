@@ -7,12 +7,31 @@ from django.db.models import Avg
 
 # Create your models here.
 
+
+
+class Profile(models.Model):
+	picture = models.ImageField(upload_to = 'profile_images')
+	bio = models.TextField(max_length =300)
+	user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+	def __str__(self):
+		return str(self.id)
+
+
+	def save_table(self):
+			self.save()
+
+	@classmethod
+	def get_by_user(cls, user):
+		profile = cls.objects.filter(user__username=user).first()
+		return profile
 class Projects(models.Model):
 	title = models.CharField(max_length =30)
 	image = models.ImageField(upload_to = 'project_images')
 	description = models.TextField(max_length =300)
 	link = models.URLField(max_length=200)
 	user = models.ForeignKey(User,on_delete=models.CASCADE)
+
 
 	def __str__(self):
 			return self.title
@@ -46,23 +65,6 @@ class Projects(models.Model):
 			return table
 
 
-class Profile(models.Model):
-	picture = models.ImageField(upload_to = 'profile_images')
-	bio = models.TextField(max_length =300)
-	user = models.ForeignKey(User,on_delete=models.CASCADE)
-
-	def __str__(self):
-		return str(self.id)
-
-
-	def save_table(self):
-			self.save()
-
-	@classmethod
-	def get_by_user(cls, user):
-		profile = cls.objects.filter(user__username=user).first()
-		return profile
-
 RATING = (
 (1,1),
 (2,2),
@@ -76,8 +78,8 @@ class Review(models.Model):
 	content_rating = models.IntegerField(choices=RATING,null = True,)
 	user_experience_rating = models.IntegerField(choices=RATING,null = True,)
 	user = models.ForeignKey(User,on_delete=models.CASCADE, null = True, blank=True)
-	profile = models.ForeignKey(Profile,on_delete=models.CASCADE, null = True, blank=True)
 	project = models.ForeignKey(Projects,on_delete=models.CASCADE, null = True, blank=True)
+	profile = models.ForeignKey(Profile,on_delete=models.CASCADE, null = True, blank=True)
 
 
 	def __str__(self):
