@@ -68,6 +68,10 @@ def new_project(request):
 def review(request, id):
 	current_user = request.user
 	project = Projects.get_by_id(id)
+	d_avg = Review.design_avg()
+	c_avg = Review.content_avg()
+	u_avg = Review.user_avg()
+
 	if request.method == 'POST':
 		form = ReviewForm(request.POST, request.FILES)
 		if form.is_valid():
@@ -75,8 +79,8 @@ def review(request, id):
 			upload.user = current_user
 			upload.project = project
 			upload.save()
-		return redirect('home')
+		return redirect('review', project.id)
 	else:
 		form=ReviewForm()
 
-	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project})
+	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project ,'d_avg':d_avg,'c_avg':c_avg, 'u_avg':u_avg,})
