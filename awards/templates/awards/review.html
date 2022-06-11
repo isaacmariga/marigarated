@@ -1,21 +1,51 @@
 {% extends 'awards/base.html'%}{% load django_bootstrap5 %} {% block content %} {{block.super}}
 
-<form action="{%url 'review' project.id%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}{{form.as_p}}
-    <input type="submit" class="btn btn-success btn-lg" value="Post">
-</form>
+
+<div class="col-lg-6 mb-3 mb-lg-0">
+    <div class="hover hover-3 text-white rounded"><img src="{{project.image.url}}" alt="">
+        <div class="hover-overlay"></div>
+        <div class="hover-3-content px-5 py-4">
+            <h5 class="hover-3-title text-uppercase font-weight-bold mb-1"><span class="font-weight-light">Site</h4>
+        </div>
+    </div>
+</div>
+
 <h2>Other page</h2>
+<div data-bs-toggle="modal" data-bs-target="#id{{project.id}}">Link
+</div>
 <h2>{{project.title}}</h2>
 <p>{{project.description}}</p>
 <p>{{project.user}}</p>
 <p>{{project.id}}</p>
 <img src="{{project.image.url}}" alt="" style="height: 200px; width:auto;">
 
+<div class="modal fade" id="id{{project.id}}" tabindex="-1" aria-labelledby="{{project.title}}" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Leave a rating for <br>{{project.title}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{%url 'review' project.id%}" method="post" enctype="multipart/form-data">
+                {%csrf_token%} {% bootstrap_form form%}
+                <input type="submit" class="btn btn-success btn-lg" value="Post">
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
 <style>
     .hover {
         overflow: hidden;
         position: relative;
         padding-bottom: 60%;
+        width: 100vw;
+        height: 100%;
+        object-fit: contain;
     }
     
     .hover-overlay {
@@ -41,8 +71,69 @@
         z-index: 99;
     }
     
-    <!-- DEMO 3 Item--><div class="col-lg-6 mb-3 mb-lg-0"><div class="hover hover-3 text-white rounded"><img src="https://bootstrapious.com/i/snippets/sn-img-hover/hoverSet-5.jpg" alt=""><div class="hover-overlay"></div><div class="hover-3-content px-5 py-4"><h3 class="hover-3-title text-uppercase font-weight-bold mb-1"><span class="font-weight-light">Image </span>Caption</h3><p class="hover-3-description small text-uppercase mb-0">Lorem ipsum dolor sit amet,
-    consectetur <br>adipisicing elit.</p></div></div></div>
+    .hover-3::after {
+        content: '';
+        width: calc(100% - 50rem);
+        height: calc(100% - 32rem);
+        border: 1px solid #fff;
+        position: absolute;
+        top: 15.9rem;
+        left: 25rem;
+        z-index: 90;
+        transition: all 0.3s;
+        transform: scale(1.1);
+        opacity: 0;
+        display: block;
+        opacity: 0;
+    }
+    
+    .hover-3-content {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        text-align: center;
+        z-index: 99;
+    }
+    
+    .hover-3-description {
+        opacity: 0;
+        transform: scale(1.3);
+        transition: all 0.3s;
+    }
+    
+    .hover-3 img {
+        width: 110%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .hover-3 .hover-overlay {
+        background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .hover-3:hover img {
+        width: 100%;
+    }
+    
+    .hover-3:hover::after {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .hover-3:hover .hover-3-description {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .hover-3:hover .hover-overlay {
+        background: rgba(0, 0, 0, 0.8);
+    }
+    /* Modal */
+    
+    
 </style>
 
 {% endblock%}
