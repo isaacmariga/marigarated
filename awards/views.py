@@ -6,8 +6,6 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-def welcome(request):
-		return render(request, 'test.html')
 
 def home(request):
 	projects = Projects.get_all()
@@ -25,6 +23,9 @@ def project(request, id):
 	project = Projects.get_by_id(id)
 	# project = Projects.get_by_id(id)
 	title = project.title
+
+	
+	
 
 	return render(request, 'awards/project.html', {'project': project, "id":id, 'project':project, 'title':title})
 
@@ -46,18 +47,6 @@ def search_project(request):
 	else :
 		message = 'We have not found your search term'
 		return render(request, 'awards/search_project.html', {'message':message, 'projects':projects})
-
-def Review_rate(request):
-	if request.method == 'GET':
-		proj_id = request.GET.get('proj_id')
-		project = Projects.objects.get(id=proj_id)
-		comment = request.GET.get('comment')
-		rate = request.GET.get('rate')
-		user = request.user
-		Review(user=user, project=project, comment=comment, rate=rate)
-		return redirect('project', id=proj_id)
-
-
 
 
 @login_required(login_url='/accounts/login/')
