@@ -78,6 +78,7 @@ def review(request, id):
 			upload = form.save(commit=False)
 			upload.user = current_user
 			upload.project = project
+			# upload.profile = current_user.profile
 			upload.save()
 		return redirect('review', project.id)
 	else:

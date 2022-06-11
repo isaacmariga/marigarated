@@ -38,18 +38,15 @@
         </ul> 
     </div>
     </center>
-
+    <form action="{%url 'review' project.id%} " method="Post " enctype="multipart/form-data ">
+        {%csrf_token%} {% bootstrap_form form%}
+        <button type="submit " class="btn btn-success btn-lg " value="Post "></button>
+    </form>
+    
+    <div data-bs-toggle="modal " data-bs-target="#id{{project.id}} ">Link</div>
 
     {% for review in project.review_set.all%}
-{{ review.comment}}
 
-
-    <img src="{{review.user.picture.url}} " alt=" ">
-    
-
-    {% endfor%}
-
-{{project.profile.picture.url}}
 
     <div class="comments ">
 
@@ -57,11 +54,11 @@
             <div class="col-sm-5 col-md-6 col-12 pb-4 ">
                 <h1>Comments</h1>
                 <div class="comment mt-4 text-justify float-left ">
-                    <img src="{{project.profile.picture.url}} " alt=" " class="rounded-circle " width="40 " height="40 ">
-                    <h4>Jhon Doe</h4>
+                    <img src="{{review.profile.picture.url}} " alt=" " class="rounded-circle " width="40 " height="40 ">
+                    <h4>{{ review.user}}</h4>
                     <span>- 20 October, 2018</span>
                     <br>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                    <p>{{ review.comment}}</p>
                 </div>
                 <div class="text-justify darker mt-4 float-right ">
                     <img src="https://i.imgur.com/CFpa3nK.jpg " alt=" " class="rounded-circle " width="40 " height="40 ">
@@ -86,15 +83,11 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4 ">
-                <form action="{%url 'review' project.id%} " method="post " enctype="multipart/form-data ">
-                    {%csrf_token%} {% bootstrap_form form%}
-                    <div class="modal-footer ">
-                        <input type="submit " class="btn btn-success btn-lg " value="Post ">
 
-                </form>
             </div>
         </div>
     </div>
+    {% endfor%}
     <ul class="list-group ">
         <li class="list-group-item active ">Comments</li>
         <li class="list-group-item ">Dapibus ac facilisis in</li>
@@ -102,30 +95,12 @@
         <li class="list-group-item ">Porta ac consectetur ac</li>
         <li class="list-group-item ">Vestibulum at eros</li>
       </ul>
+
+
+   
 </div>
-    <div data-bs-toggle="modal " data-bs-target="#id{{project.id}} ">Link
 
 
-    <div class="modal fade " id="id{{project.id}} " tabindex="-1 " aria-labelledby="{{project.title}} " aria-hidden="true ">
-        <div class="modal-dialog ">
-            <div class="modal-content ">
-                <div class="modal-header ">
-                    <h5 class="modal-title " id="exampleModalLabel ">Leave a rating for <br>{{project.title}}</h5>
-                    <button type="button " class="btn-close " data-bs-dismiss="modal " aria-label="Close "></button>
-                </div>
-                <div class="modal-body ">
-                    <form action="{%url 'review' project.id%} " method="post " enctype="multipart/form-data ">
-                        {%csrf_token%} {% bootstrap_form form%}
-                        <div class="modal-footer ">
-                            <input type="submit " class="btn btn-success btn-lg " value="Post ">
-
-                    </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
         <style>
 
             .rating-item{
@@ -254,7 +229,7 @@
 
             /* Comments */
 
-
+/* 
 .navbar-nav{
     width: 100%;
 }
@@ -301,12 +276,12 @@
     border-style: solid;
     border-radius: 13px;
     width: 50%;
-}
+} */
 
 /* body{
     background-color: black;
 } */
-
+/* 
 #nav-items li a,#profile{
     text-decoration: none;
     color: rgb(224, 219, 219);
@@ -382,7 +357,7 @@ form{
     background-color: rgba(16, 46, 46, 0.973);
     border-radius: 5px;
     padding: 20px;
- }
+ } */
 
         </style>
 
