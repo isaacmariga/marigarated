@@ -30,9 +30,10 @@ def project(request, id):
 
 def profile(request, user):
 	profile = Profile.get_by_user(user)
-	title = profile.user
+	
+	# title = profile.user
 
-	return render(request, 'awards/profile.html', {'profile': profile, "user":user, 'title': title})
+	return render(request, 'awards/profile.html', {'profile': profile, "user":user, })
 
 def search_project(request):
 	if 'search_project' in request.GET and request.GET['search_project']:

@@ -54,9 +54,9 @@ class Profile(models.Model):
 			self.save()
 
 	@classmethod
-	def get_by_user(cls, user__username):
-			table = Projects.objects.get(user__username=user__username)
-			return table
+	def get_by_user(cls, user):
+		profile = cls.objects.filter(user__username=user).first()
+		return profile
 
 RATING = (
 (1,1),

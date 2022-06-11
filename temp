@@ -1,14 +1,128 @@
-
 <!-- <h2>{{project.title}}</h2> -->
 <!-- <p>{{project.description}}</p> -->
 <!-- <p>{{project.user}}</p> -->
 <!-- <a href="{% url 'project' project.id%}">project</a>
 <a href="{% url 'profile' project.user%}">profile</a>
 <a href="{% url 'review' project.id%}">review</a>
-<img src="{{project.image.url}}" alt="" style="height: 200px; width:auto;">  -->
+<img src="{{project.image.url}}" alt="" style="height: 200px; width:auto;"> 
 <!-- {% for review in project.review_set.all%}
 <p>{{review.comment}}</p>
 {% endfor%} {% endfor%}
 <p>{{d_avg}}</p>
 <p>{{c_avg}}</p>
-<p>{{u_avg}}</p> -->
+<p>{{u_avg}}</p>
+
+
+
+
+  <a href="{% url 'project' project.id%} ">project</a>
+    <a href="{% url 'profile' project.user%} ">profile</a>
+    <a href="{% url 'review' project.id%} ">review</a>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere neque sed at libero architecto ducimus beatae eaque dolorum modi impedit. -->
+
+
+
+<style>
+    .cont {
+        margin: 30px;
+    }
+    
+    .hover {
+        overflow: hidden;
+        position: relative;
+        padding-bottom: 60%;
+    }
+    
+    .hover-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 90;
+        transition: all 0.4s;
+    }
+    
+    .hover img {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all 0.3s;
+    }
+    
+    .hover-content {
+        position: relative;
+        z-index: 99;
+    }
+    
+    .hover-2 .hover-overlay {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1));
+    }
+    
+    .hover-2-title {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        z-index: 99;
+        transition: all 0.3s;
+    }
+    
+    .hover-2-description {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
+        left: 0;
+        text-align: center;
+        z-index: 99;
+        transition: all 0.3s;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        max-height: 3em;
+    }
+    
+    .hover-2-user {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
+        left: 0;
+        text-align: center;
+        z-index: 99;
+        transition: all 0.3s;
+    }
+    
+    .hover-2:hover .hover-2-title {
+        transform: translateY(-1rem);
+    }
+    
+    .hover-2:hover .hover-2-description {
+        bottom: 5rem;
+        opacity: 1;
+    }
+    
+    .hover-2:hover .hover-2-user {
+        bottom: 0.2rem;
+        opacity: 1;
+    }
+    
+    .hover-2:hover .hover-overlay {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1));
+    }
+</style>
