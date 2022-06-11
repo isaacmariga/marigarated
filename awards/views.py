@@ -65,12 +65,27 @@ def new_project(request):
 	return render(request, 'awards/new_project.html', {'form': form})
 
 @login_required(login_url='/accounts/login/')
+def edit_profile(request):
+	current_user = request.user
+	if request.method == 'POST':
+		form = ProfileForm(request.POST, request.FILES)
+		if form.is_valid():
+			profile = form.save(commit=False)
+			profile.user = current_user
+			profile.save()
+		return redirect('home')
+	else:
+		form=ProfileForm()
+
+	return render(request, 'django_registration/registration_complete.html', {'form': form})
+
+@login_required(login_url='/accounts/login/')
 def review(request, id):
 	current_user = request.user
 	project = Projects.get_by_id(id)
-	d_avg = Review.design_avg()
-	c_avg = Review.content_avg()
-	u_avg = Review.user_avg()
+	# d_avg = Review.design_avg()
+	# c_avg = Review.content_avg()
+	# u_avg = Review.user_avg()
 
 	if request.method == 'POST':
 		form = ReviewForm(request.POST, request.FILES)
@@ -84,4 +99,4 @@ def review(request, id):
 	else:
 		form=ReviewForm()
 
-	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project ,'d_avg':d_avg,'c_avg':c_avg, 'u_avg':u_avg,})
+	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project })

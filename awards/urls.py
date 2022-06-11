@@ -12,6 +12,7 @@ urlpatterns = [
   path('search_project/', views.search_project,name = 'search_project'),
   path('new/project/', views.new_project,name = 'new_project'),
   path('review/<id>', views.review,name = 'review'),
+  path('accounts/register/complete/', views.edit_profile,name = 'edit_profile'),
 
 ]
 

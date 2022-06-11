@@ -1,5 +1,9 @@
-<h1>Welcome</h1>
+{% extends 'django_registration/base.html'%}{% load django_bootstrap5 %} {% block content %} {{block.super}}
 
-<a href=" {% url 'home'%}">
-    <h1>Welcome</h1>
-</a>
+<form action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+    {%csrf_token%} {% bootstrap_form form%}
+    <button type="submit" class="btn btn-success btn-lg" value="Post"> Submit</button>
+</form>
+
+
+{% endblock%}
