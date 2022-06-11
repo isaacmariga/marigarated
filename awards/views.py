@@ -30,10 +30,10 @@ def project(request, id):
 
 def profile(request, user):
 	profile = Profile.get_by_user(user)
-	
+	projects = Projects.filter_by_user(user)
 	# title = profile.user
 
-	return render(request, 'awards/profile.html', {'profile': profile, "user":user, })
+	return render(request, 'awards/profile.html', {'profile': profile, "user":user,'projects':projects })
 
 def search_project(request):
 	if 'search_project' in request.GET and request.GET['search_project']:
@@ -57,21 +57,6 @@ def Review_rate(request):
 		Review(user=user, project=project, comment=comment, rate=rate)
 		return redirect('project', id=proj_id)
 
-
-# @login_required(login_url='/accounts/login/')
-# def project_form(request):
-# 	current_user = request.user		
-# 	if request.method == 'POST':
-# 		form = ProjectForm(request.POST, request.FILES)
-# 		if form.is_valid():
-# 			name = form.save(commit=False)
-# 			name.user = current_user
-# 			name.save()
-# 		return redirect('home')
-# 	else:
-# 		form = ProjectForm()
-			
-# 	return render(request, 'awards/new_project.html', {'form': form})
 
 
 

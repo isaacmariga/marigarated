@@ -36,6 +36,11 @@ class Projects(models.Model):
 			return table
 
 	@classmethod
+	def filter_by_user(cls, user):
+			table = Projects.objects.filter(user__username=user)
+			return table
+
+	@classmethod
 	def filter_by_title(cls, search):
 			table = Projects.objects.filter(title__icontains=search)
 			return table
