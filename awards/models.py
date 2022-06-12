@@ -79,7 +79,7 @@ class Review(models.Model):
 	user_experience_rating = models.IntegerField(choices=RATING,null = True,)
 	user = models.ForeignKey(User,on_delete=models.CASCADE, null = True, blank=True)
 	project = models.ForeignKey(Projects,on_delete=models.CASCADE, null = True, blank=True)
-	profile = models.ForeignKey(Profile,on_delete=models.CASCADE, null = True, blank=True)
+	comment_time = models.DateTimeField(auto_now_add=True,  null = True, blank=True)
 
 
 	def __str__(self):
