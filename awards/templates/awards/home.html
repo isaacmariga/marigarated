@@ -34,7 +34,7 @@
 						<div class="modal-header"> <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                     </div>
                     <div class="modal-body p-0 row">
-                        <div class=""> <img src="{{project.image.url}}" width="100%" height="100%" /> </div>
+                        <div class="" style="box-shadow: 0 0 5px #c403f4, 0 0 5px #c403f4, 0 0 50px #c403f4, 0 0 25px #c403f4;"> <img src="{{project.image.url}}" width="100%" height="100%" /> </div>
                         <div class="details col-12 col-lg-7">
                             <center>
                                 <h3>{{project.title}}</h2>
@@ -81,7 +81,7 @@
     .body {
         display: grid;
         gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
     }
     
     .hover {
@@ -91,7 +91,7 @@
         padding-bottom: 60%;
     }
     
-    @media (min-width: 50em) {
+    @media (min-width: 48em) {
         .featured {
             grid-row: span 2;
             grid-column: span 2;
