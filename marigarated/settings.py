@@ -43,6 +43,8 @@ else:
          'NAME': 'marigarated',
          'USER': 'mariga',
      'PASSWORD':'password',
+     'ALLOWED_HOSTS':'.localhost','.herokuapp.com','.127.0.0.1','marigarated.herokuapp.com','127.0.0.1:8000'
+
      }
  }
 db_from_env = dj_database_url.config(conn_max_age=500)
