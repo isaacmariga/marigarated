@@ -15,12 +15,12 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar ">
         <div class="container-fluid">
             <a href="{% url 'home' %}"><img class="navbar-logo" src="{% static 'images/flaticon.png' %}" alt="image alt text" /></a>
             <a class="navbar-brand" href="{% url 'home'%}" style="color: white;">Marigarated</a>
-            <button class="navbar-toggler" style="background-color: rgba(255, 255, 255, 0.331);" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="{% static 'images/menu.png' %}">
           </button >
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -59,7 +59,7 @@
     }
     
     .navbar {
-        background-color: black;
+        background-color: transparent;
         color: wheat;
     }
 </style>
