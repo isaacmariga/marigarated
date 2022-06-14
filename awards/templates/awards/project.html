@@ -1,16 +1,8 @@
-{% extends 'awards/base.html'%}{% block content %} {{block.super}}
-<h2>Other page</h2>
-<h2>{{project.title}}</h2>
-<p>{{project.description}}</p>
-<p>{{project.user}}</p>
-<p>{{project.id}}</p>
-<img src="{{project.image.url}}" alt="" style="height: 200px; width:auto;"> {% endblock %}
+{% extends 'awards/base.html'%}{% load django_bootstrap5 %} {% block content %} {{block.super}}
+<div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4 ">
+    <form action="{%url 'review' project.id%} " method="post " enctype="multipart/form-data ">
+        {%csrf_token%} {% bootstrap_form form%}
+        <button type="submit " class="btn btn-success btn-lg " value="Post "> Submit</button>
+    </form>
 
-<form class="review-form" action="/review" method="GET">
-    {% for proj in project%}
-    <input type="hidden" name="proj_id" id="proj_id" value="{{proj.id}}" />\ {% endfor%}
-
-    <div class="form-group">
-        <textarea name="comment" id="" cols="30" rows="10" class="input"></textarea>
-    </div>
-</form>
+</div> {% endblock %}

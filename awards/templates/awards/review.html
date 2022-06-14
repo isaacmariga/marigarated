@@ -6,7 +6,8 @@
         <div class="hover-overlay"></div>
         <div class="hover-3-content px-5 py-4">
             <h3 class="hover-3-title text-uppercase font-weight-bold mb-1"><span class="font-weight-light">{{project.title}}</h3>
-            <p class="hover-3-description small text-uppercase mb-0" style="margin-top:30px;">Visit Site</p>
+                <center>
+            <p class="hover-3-description small text-uppercase mb-0" style="margin-top:30px;">Visit Site</p></center>
         </div>
     </div>
 </div>
@@ -48,11 +49,12 @@
                 <span>{{ review.comment_time}}</span>
                 <br>
                 <p>{{ review.comment}}</p>
+                <p>{{ review.design_rating.d_avg}}</p>
             </div>
             {% endfor%}
         </div>
         <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4 ">
-            <form action="{%url 'review' project%} " method="post " enctype="multipart/form-data ">
+            <form action="{%url 'review' project.id%} " method="post " enctype="multipart/form-data ">
                 {%csrf_token%} {% bootstrap_form form%}
                 <button type="submit " class="btn btn-success btn-lg " value="Post "> Submit</button>
             </form>
@@ -66,25 +68,31 @@
 
 
         <style>
-
+.project-content{
+    color: white;
+}
             .rating-item{
                 margin: 3rem 0rem 3rem 0rem;
+                color: black;
+
             }
             .rating-circle{
                 padding: 35px 20px 35px 20px;
 
-                background-color: blue;
+                background-color: whitesmoke;
                 border-radius: 50%;
             }
 
             .ratings-container{
-                background-color: rgba(0, 0, 0, 0.189);
-                border-radius: 10px;
+                background-color: #c403f454;
+                color: white;
+                box-shadow: 0 0 5px #c403f4, 0 0 5px #c403f4, 0 0 50px #c403f4, 0 0 25px #c403f4;                border-radius: 10px;
                 padding: 1rem 0rem 1rem 0rem ;
                 margin: 2rem 0rem 2rem 0rem ;
             }
 
             .ratings{
+
                 display: grid;
                 place-content: center;
                 grid-template-columns: 1fr 1fr 1fr;
@@ -131,10 +139,7 @@
             
             .hover-3::after {
                 content: ' ';
-                width: calc(100% - 50rem);
-                height: calc(100% - 32rem);
-                border: 1px solid #fff;
-                position: absolute;
+
                 top: 17.9rem;
                 left: 25rem;
                 z-index: 90;
@@ -145,7 +150,7 @@
                 opacity: 0;
             }
             
-            .hover-3-content {
+           .hover-3-content {
                 position: absolute;
                 top: 50%;
                 left: 0;
@@ -155,11 +160,11 @@
                 z-index: 99;
             }
             
-            .hover-3-description {
+           .hover-3-description {
                 opacity: 0;
                 transform: scale(1.3);
                 transition: all 0.3s;
-            }
+            } 
             
             .hover-3 img {
                 width: 110%;
@@ -182,6 +187,11 @@
             }
             
             .hover-3:hover .hover-3-description {
+                width: 140px;
+                border-style: solid ;
+                border-color: white;   
+                border-width: 1px;
+                padding: 10px 0px 10px 0px;             
                 opacity: 1;
                 transform: none;
             }
@@ -265,8 +275,8 @@
 }
 
 .comment{
-    border: 1px solid rgba(16, 46, 46, 1);
-    background-color: rgba(16, 46, 46, 0.973);
+    border: 1px solid #c403f454;
+    background-color: #c403f454;
     float: left;
     border-radius: 5px;
     padding-left: 40px;
@@ -282,10 +292,7 @@
     color: rgb(184, 183, 183);
 }
 
-h1{    color: black;
-    font-weight: bold;
 
-}
 
 h4{
     color: white;
@@ -313,16 +320,36 @@ label{
 
 .form-group input,.form-group textarea{
     background-color: black;
-    border: 1px solid rgba(16, 46, 46, 1);
     border-radius: 12px;
 }
 
 form{
-    border: 1px solid rgba(16, 46, 46, 1);
-    background-color: rgba(16, 46, 46, 0.973);
+    background-color: #c403f454;
+    color: white;
+    box-shadow: 0 0 5px #c403f4, 0 0 5px #c403f4, 0 0 50px #c403f4, 0 0 25px #c403f4;                border-radius: 10px;
     border-radius: 5px;
     padding: 20px;
  }
+
+ .btn {
+        margin: 5px;
+        border-style: solid;
+        border-color: #c403f4;
+        width: fit-content;
+        padding: 10px 10px;
+        color: #c403f4;
+        font-size: 12px;
+        text-transform: uppercase;
+        transition: 0.5s;
+        letter-spacing: 4px;
+        cursor: pointer;
+    }
+    
+    .btn:hover {
+        background-color: #c403f4;
+        color: #050801;
+        box-shadow: 0 0 5px #c403f4, 0 0 25px #c403f4, 0 0 50px #c403f4, 0 0 200px #c403f4;
+    }
         </style>
 
         {% endblock%}

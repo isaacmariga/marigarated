@@ -75,12 +75,11 @@ RATING = (
 )
 class Review(models.Model):
 	comment =models.TextField(max_length=300)
-	design_rating = models.IntegerField(choices=RATING,null = True,)
-	content_rating = models.IntegerField(choices=RATING,null = True,)
-	user_experience_rating = models.IntegerField(choices=RATING,null = True,)
-	user = models.ForeignKey(User,on_delete=models.CASCADE, null = True, blank=True)
-	project = models.ForeignKey(Projects,on_delete=models.CASCADE, null = True, blank=True)
-	comment_time = models.DateTimeField(auto_now_add=True,  null = True, blank=True)
+	design_rating = models.IntegerField(choices=RATING, default=0)
+	content_rating = models.IntegerField(choices=RATING,default=0)
+	user_experience_rating = models.IntegerField(choices=RATING, default=0)
+	user = models.ForeignKey(User,on_delete=models.CASCADE, default=0)
+	# project = models.ForeignKey(Projects,on_delete=models.CASCADE, default=1)
 
 
 	def __str__(self):
