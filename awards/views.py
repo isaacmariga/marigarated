@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 def home(request):
 	projects = Projects.get_all()
+	project = Projects.get_all().last()
 	d_avg = Review.design_avg()
 	c_avg = Review.content_avg()
 	u_avg = Review.user_avg()
@@ -17,7 +18,7 @@ def home(request):
 	
 
 
-	return render(request, 'awards/home.html', {'projects': projects, 'd_avg':d_avg,'c_avg':c_avg, 'u_avg':u_avg, 'title':title})
+	return render(request, 'awards/home.html', {'projects': projects, 'd_avg':d_avg,'c_avg':c_avg, 'u_avg':u_avg, 'title':title, 'project':project})
 
 def project(request, id):
 	project = Projects.get_by_id(id)
@@ -83,9 +84,9 @@ def edit_profile(request):
 def review(request, id):
 	current_user = request.user
 	project = Projects.get_by_id(id)
-	# d_avg = Review.design_avg()
-	# c_avg = Review.content_avg()
-	# u_avg = Review.user_avg()
+	d_avg = Review.design_avg()
+	c_avg = Review.content_avg()
+	u_avg = Review.user_avg()
 
 	if request.method == 'POST':
 		form = ReviewForm(request.POST, request.FILES)
@@ -99,4 +100,4 @@ def review(request, id):
 	else:
 		form=ReviewForm()
 
-	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project })
+	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project,'d_avg':d_avg ,'c_avg':c_avg,'u_avg':u_avg})

@@ -43,6 +43,7 @@ class Projects(models.Model):
 	def get_all(cls):
 			table = Projects.objects.all()
 			return table
+			
 
 	@classmethod
 	def get_by_title(cls, title):
