@@ -23,7 +23,7 @@ class Profile(models.Model):
 
 	@classmethod
 	def get_by_user(cls, user):
-		profile = cls.objects.filter(user__username=user).first()
+		profile = cls.objects.filter(user__username=user).last()
 		return profile
 
 

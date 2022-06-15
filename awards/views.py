@@ -74,13 +74,17 @@ def new_project(request):
 def edit_profile(request):
 	current_user = request.user
 	if request.method == 'POST':
-
+		print('test1')
 		form = ProfileForm(request.POST, request.FILES)
+		print('test2')
+
 		if form.is_valid():
+			print('test3')
 			profile = form.save(commit=False)
 			profile.user = current_user
+			print('test4')
 			profile.save()
-		return redirect('home')
+		return redirect('profile', current_user)
 	else:
 		form=ProfileForm()
 

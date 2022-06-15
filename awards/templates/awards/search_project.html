@@ -1,9 +1,287 @@
-{% extends 'awards/base.html'%}{% block content %} {{block.super}}
+{% extends 'awards/base.html'%} {% load django_bootstrap5 %}{% load static %} {% block content %} {{block.super}}
+<div class="container">
+     {% for project in projects%}
+        <div data-bs-toggle="modal" data-bs-target="#id{{project.id}}">
+            <div class="hover hover-2 text-white rounded"><img src="{{project.image.url}} " alt="">
+                <div class="hover-overlay"></div>
+                <div class="hover-2-content px-5 py-4">
+                    <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span class="font-weight-light">{{project.title}}</h3>
+					<p class="hover-2-description  mb-0">{{project.description}}</p>
+					<p class="hover-2-user  mb-0">{{project.user}}</p>
+			</div>
+		</div>
 
-<h1>Searched and found</h1>{% for project in projects%}
-<h2>{{project.title}}</h2>
-<p>{{project.description}}</p>
-<p>{{project.user}}</p>
-<p>{{project.id}}</p>
-<a href="{% url 'project' project.id%}">Link</a>
-<img src="{{project.image.url}}" alt="" style="height: 200px; width:auto;"> {% endfor%} {% endblock %}
+
+
+		<!-- Modal -->
+			<div class="modal fade"  id="id{{project.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document"  style="box-shadow: 0 0 5px #c403f4, 0 0 5px #c403f4, 0 0 50px #c403f4, 0 0 25px #c403f4;">
+					<div class="modal-content">
+						<div class="modal-header"> <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                    </div>
+                    <div class="modal-body p-0 row">
+                        <div class=""> <img src="{{project.image.url}}" width="100%" height="100%" /> </div>
+                        <div class="details col-12 col-lg-7">
+                            <center>
+                                <h3>{{project.title}}</h2>
+
+                            </center>
+                            <a href="{% url 'profile' project.user%} ">
+                                <p><small class="para">By: {{project.user}}</small></p>
+                            </a>
+                            <p class="para">{{project.description}}</p>
+
+                            <center>
+                                <a class="btn btn-successs" href="{{project.link}}">Visit the site</a>
+                                <a class="btn btn-successs" href="{% url 'review' project.id%} ">Rate Project</a>
+                                <div style="padding: 30px 0px 10px 0px;">
+
+                                </div>
+                            </center>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor%}
+
+</div>
+
+</div>
+
+
+
+
+<style>
+    .body {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    }
+    
+    .hover {
+        box-shadow: 0 0 3px #c403f4, 0 0 5px #c403f4, 0 0 5px #c403f4, 0 0 5px #c403f4;
+        overflow: hidden;
+        position: relative;
+        padding-bottom: 60%;
+    }
+    
+    @media (min-width: 60em) {
+        .featured {
+            grid-row: span 2;
+            grid-column: span 2;
+            font-size: calc(100% + 0.1vw);
+        }
+    }
+    
+    .hover-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 90;
+        transition: all 0.4s;
+    }
+    
+    .hover img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all 0.3s;
+    }
+    
+    .hover-content {
+        position: relative;
+        z-index: 99;
+    }
+    
+    .hover-2 .hover-overlay {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1));
+    }
+    
+    .hover-2-title {
+        position: absolute;
+        font-size: calc(150% + 0.1vw);
+        top: 50%;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        z-index: 99;
+        transition: all 0.3s;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+    
+    .hover-2-description {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
+        left: 0;
+        text-align: center;
+        z-index: 99;
+        transition: all 0.3s;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+    
+    .hover-2-user {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
+        left: 0;
+        text-align: center;
+        z-index: 99;
+        transition: all 0.3s;
+    }
+    
+    .hover-2:hover .hover-2-title {
+        transform: translateY(-1rem);
+    }
+    
+    .hover-2:hover .hover-2-description {
+        bottom: 2em;
+        opacity: 1;
+    }
+    
+    .hover-2:hover .hover-2-user {
+        bottom: 0.2rem;
+        opacity: 1;
+    }
+    
+    .hover-2:hover .hover-overlay {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1));
+    }
+    /* Modal */
+    
+    .modal,
+    .fade,
+    .show {
+        background-color: rgba(0, 0, 0, 0.3);
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    h2 {
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #000;
+    }
+    
+    .modal-content {
+        border: none;
+        background: transparent;
+        padding: 0 19px;
+    }
+    
+    .close {
+        position: relative;
+        top: 48px;
+        left: 13px;
+        z-index: 1;
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 1;
+        color: black;
+    }
+    
+    .modal-header {
+        border: none;
+    }
+    
+    .modal-header .close {
+        padding: 0rem 1rem !important;
+        margin: -1rem -1rem -1rem auto;
+    }
+    
+    .modal-body {
+        border: none;
+        background-color: white;
+        padding-bottom: 5px;
+    }
+    
+    .close.focus,
+    .close:focus {
+        outline: 0;
+        box-shadow: none !important;
+    }
+    
+    .form-control {
+        width: 80%;
+        height: 50px;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0px 0.5px 0px 0px #dae0e5 !important;
+        color: #63686c;
+        font-weight: bold;
+        font-size: 12px;
+    }
+    
+    .form-control.focus {
+        border: none;
+        border-color: #fff;
+        border-bottom: 1px solid #000;
+        outline: 0;
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, .25);
+    }
+    
+    @media (min-width:599px) {
+        .modal-dialog {
+            max-width: 47rem;
+        }
+        .details {
+            padding: 60px 0 40px 50px;
+        }
+        .text-muted a {
+            color: #c0bfbf;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        small.para {
+            font-weight: bold;
+            font-size: 14px;
+            color: #63686c;
+        }
+    }
+    
+    .details {
+        width: 100%;
+    }
+    
+    .btn {
+        margin: 5px;
+        border-style: solid;
+        border-color: #c403f4;
+        width: fit-content;
+        padding: 10px 10px;
+        color: #c403f4;
+        font-size: 12px;
+        text-transform: uppercase;
+        transition: 0.5s;
+        letter-spacing: 4px;
+        cursor: pointer;
+    }
+    
+    .btn:hover {
+        background-color: #c403f4;
+        color: #050801;
+        box-shadow: 0 0 5px #c403f4, 0 0 25px #c403f4, 0 0 50px #c403f4, 0 0 200px #c403f4;
+    }
+</style>
+
+{% endblock %}
