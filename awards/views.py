@@ -87,9 +87,11 @@ def edit_profile(request):
 def review(request, id):
 	current_user = request.user
 	project = Projects.get_by_id(id)
-	d_avg = Review.design_avg()
-	c_avg = Review.content_avg()
-	u_avg = Review.user_avg()
+	d_avg = Review.design_avg(id)
+	c_avg = Review.content_avg(id)
+	u_avg = Review.user_avg(id)
+	d2_avg = Review.design_avg_test(id)
+	
 
 	if request.method == 'POST':
 
@@ -100,13 +102,14 @@ def review(request, id):
 			review = form.save(commit=False)
 			review.user = current_user
 			review.project = project
+			review.avg_design = d_avg
 			form.save()
 		return redirect('review', project.id)
 	else:
 
 		form=ReviewForm()
 
-	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project,'d_avg':d_avg ,'c_avg':c_avg,'u_avg':u_avg})
+	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project,'d_avg':d_avg ,'c_avg':c_avg,'u_avg':u_avg, 'd2_avg':d2_avg})
 
 
 

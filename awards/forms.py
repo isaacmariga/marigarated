@@ -20,4 +20,4 @@ class ProfileForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
   class Meta:
     model = Review
-    exclude = ['user', 'project']
+    exclude = ['user', 'project', 'avg_design']
