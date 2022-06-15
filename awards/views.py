@@ -68,7 +68,7 @@ def new_project(request):
 	else:
 		form=ProjectForm()
 
-	return render(request, 'awards/new_project.html', {'form': form, 'test': test})
+	return render(request, 'awards/new_project.html', {'form': form,})
 
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):
