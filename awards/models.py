@@ -28,7 +28,7 @@ class Profile(models.Model):
 
 
 	@classmethod
-	def get_all(cls):
+	def get_all_profiles(cls):
 			table = Profile.objects.all()
 			return table
 			

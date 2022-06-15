@@ -123,13 +123,13 @@ def new_review(request, id):
 	return render(request, 'awards/project.html', {'form': form, 'id':id, 'project':project})
 
 
-class Project(APIView):
+class ProjectList(APIView):
 		def get(self, request, format=None):
 				projects = Projects.get_all()
 				serializers = ProjectsSerializer(projects, many=True)
 				return Response(serializers.data)
-class Profile(APIView):
+class ProfileList(APIView):
 		def get(self, request, format=None):
-				profile = Profile.get_all()
+				profile = Profile.get_all_profiles()
 				serializers = ProfileSerializer(profile, many=True)
 				return Response(serializers.data)
