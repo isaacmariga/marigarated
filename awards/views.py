@@ -55,22 +55,26 @@ def search_project(request):
 @login_required(login_url='/accounts/login/')
 def new_project(request):
 	current_user = request.user
+
+
 	if request.method == 'POST':
 		form = ProjectForm(request.POST, request.FILES)
 		if form.is_valid():
 			upload = form.save(commit=False)
 			upload.user = current_user
 			upload.save()
-		return redirect('home')
+
+		return redirect('new_project')
 	else:
 		form=ProjectForm()
 
-	return render(request, 'awards/new_project.html', {'form': form})
+	return render(request, 'awards/new_project.html', {'form': form, 'test': test})
 
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):
 	current_user = request.user
 	if request.method == 'POST':
+
 		form = ProfileForm(request.POST, request.FILES)
 		if form.is_valid():
 			profile = form.save(commit=False)
@@ -94,14 +98,14 @@ def review(request, id):
 	if request.method == 'POST':
 
 		form = ReviewForm(request.POST)
-
-		print(form)
 		if form.is_valid():
 			review = form.save(commit=False)
 			review.user = current_user
 			review.project = project
-			review.profile = project.profile
-			form.save()
+			profiles = current_user.profile_set.values()
+			for profile in profiles:
+				review.profile_id = profile['id']
+				form.save()
 		return redirect('review', project.id)
 	else:
 

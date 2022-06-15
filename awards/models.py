@@ -38,7 +38,6 @@ class Projects(models.Model):
 	description = models.TextField(max_length =300)
 	link = models.URLField(max_length=200)
 	user = models.ForeignKey(User,on_delete=models.CASCADE)
-	profile = models.ForeignKey(Profile,on_delete=models.CASCADE, blank=True, null=True)
 
 
 	def __str__(self):
