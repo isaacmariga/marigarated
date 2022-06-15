@@ -19,11 +19,11 @@ import dj_database_url
 
 
 
-MODE=config("MODE", default="prod")
+MODE=config('MODE', default='prod')
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 # development
-if config('MODE')=="prod":
+if config('MODE')=='prod':
    DATABASES = {
        'default': {
            'ENGINE': 'django.db.backends.postgresql_psycopg2',
