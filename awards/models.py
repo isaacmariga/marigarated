@@ -38,6 +38,7 @@ class Projects(models.Model):
 	description = models.TextField(max_length =300)
 	link = models.URLField(max_length=200)
 	user = models.ForeignKey(User,on_delete=models.CASCADE)
+	profile = models.ForeignKey(Profile,on_delete=models.CASCADE, blank=True, null=True)
 
 
 	def __str__(self):
@@ -78,17 +79,22 @@ RATING = (
 (2,2),
 (3,3),
 (4,4),
-(5,5)
+(5,5),
+(6,6),
+(7,7),
+(8,8),
+(9,9),
+(10,10),
 )
 class Review(models.Model):
 	comment =models.TextField(max_length=300)
 	design_rating = models.IntegerField(choices=RATING, default=0)
-	avg_design = models.IntegerField(default=0)
 	content_rating = models.IntegerField(choices=RATING,default=0)
 	user_experience_rating = models.IntegerField(choices=RATING, default=0)
 	user = models.ForeignKey(User,on_delete=models.CASCADE, default=0)
 	project = models.ForeignKey(Projects,on_delete=models.CASCADE, default=1)
-	field_name = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+	profile = models.ForeignKey(Profile,on_delete=models.CASCADE, default=1)
+	date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
 
 	def __str__(self):

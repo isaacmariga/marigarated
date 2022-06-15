@@ -39,25 +39,17 @@
                             <center>
                                 <h3>{{project.title}}</h2>
 
-                                    <p><small class="para">{{project.description}}</small></p>
                             </center>
                             <a href="{% url 'profile' project.user%} ">
                                 <p><small class="para">By: {{project.user}}</small></p>
                             </a>
+                            <p class="para">{{project.description}}</p>
+
                             <center>
                                 <a class="btn btn-successs" href="{{project.link}}">Visit the site</a>
                                 <a class="btn btn-successs" href="{% url 'review' project.id%} ">Rate Project</a>
                                 <div style="padding: 30px 0px 10px 0px;">
-                                    <h3>Ratings</h3>
-                                    <ul class="list-inline list-unstyled">
-                                        <li class="list-inline-item "> Design Rating: <br>{{d_avg}}/5
-                                        </li>
-                                        <li class="list-inline-item "> User Experience Rating: <br> {{c_avg}}/5
-                                        </li>
-                                        <li class="list-inline-item "> Design Rating: <br> {{u_avg}}/5
-                                        </li>
 
-                                    </ul>
                                 </div>
                             </center>
                         </div>

@@ -13,15 +13,13 @@ from .serializer import ProfileSerializer,ProjectsSerializer
 def home(request):
 	projects = Projects.get_all()
 	project = Projects.get_all().last()
-	d_avg = Review.design_avg()
-	c_avg = Review.content_avg()
-	u_avg = Review.user_avg()
+
 
 	title = 'Home'
 	
 
 
-	return render(request, 'awards/home.html', {'projects': projects, 'd_avg':d_avg,'c_avg':c_avg, 'u_avg':u_avg, 'title':title, 'project':project})
+	return render(request, 'awards/home.html', {'projects': projects,  'title':title, 'project':project})
 
 def project(request, id):
 	project = Projects.get_by_id(id)
@@ -42,6 +40,7 @@ def profile(request, user):
 
 def search_project(request):
 	if 'search_project' in request.GET and request.GET['search_project']:
+		print('This far')
 		title = request.GET.get('search_project')
 		projects = Projects.filter_by_title(title)
 		message = f'{title}'
@@ -90,7 +89,6 @@ def review(request, id):
 	d_avg = Review.design_avg(id)
 	c_avg = Review.content_avg(id)
 	u_avg = Review.user_avg(id)
-	d2_avg = Review.design_avg_test(id)
 	
 
 	if request.method == 'POST':
@@ -102,33 +100,14 @@ def review(request, id):
 			review = form.save(commit=False)
 			review.user = current_user
 			review.project = project
-			review.avg_design = d_avg
+			review.profile = project.profile
 			form.save()
 		return redirect('review', project.id)
 	else:
 
 		form=ReviewForm()
 
-	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project,'d_avg':d_avg ,'c_avg':c_avg,'u_avg':u_avg, 'd2_avg':d2_avg})
-
-
-
-@login_required(login_url='/accounts/login/')
-def new_review(request, id):
-	current_user = request.user
-	project = Projects.get_by_id(id)
-	if request.method == 'POST':
-		form = ReviewForm(request.POST, request.FILES)
-		if form.is_valid():
-			# upload = form.save(commit=False)
-			# upload.user = current_user
-			form.save()
-		return redirect('home')
-	else:
-		form=ReviewForm()
-
-	return render(request, 'awards/project.html', {'form': form, 'id':id, 'project':project})
-
+	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project,'d_avg':d_avg ,'c_avg':c_avg,'u_avg':u_avg})
 
 class ProjectList(APIView):
 		def get(self, request, format=None):
