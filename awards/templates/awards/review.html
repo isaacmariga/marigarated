@@ -6,45 +6,46 @@
         <div class="hover-overlay"></div>
         <div class="hover-3-content px-5 py-4">
             <h3 class="hover-3-title text-uppercase font-weight-bold mb-1"><span class="font-weight-light">{{project.title}}</h3>
-                <center>
-            <p class="hover-3-description small text-uppercase mb-0" style="margin-top:30px;">Visit Site</p></center>
+            <center>
+                <p class="hover-3-description small text-uppercase mb-0" style="margin-top:30px;">Visit Site</p>
+            </center>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="project-content">
-<center>
-    <h1>{{project.title}}</h1>
-    <p>By: {{project.user}}</p>
-</center>
+        <center>
+            <h1>{{project.title}}</h1>
+            <p>By: {{project.user}}</p>
+        </center>
 
-    <p>{{project.description}}</p>
-<center>
-    <div class="ratings-container">
-    <h2>Website ratings </h2>
-        <ul class="list-inline list-unstyled ratings">
-            <li class="list-inline-item rating-item"> <span class="rating-circle">{{d_avg}}/5 </span>
+        <p>{{project.description}}</p>
+        <center>
+            <div class="ratings-container">
+                <h2>Website ratings </h2>
+                <ul class="list-inline list-unstyled ratings">
+                    <li class="list-inline-item rating-item"> <span class="rating-circle">{{d_avg}}/5 </span>
                 </li>
-                <li class="list-inline-item rating-item" "><span class="rating-circle ">{{c_avg}}/5 </span>
+                <li class="list-inline-item rating-item" "><span class=" rating-circle ">{{c_avg}}/5 </span>
             </li>
-            <li class="list-inline-item rating-item " "><span class="rating-circle">{{u_avg}}/5 </span>
+            <li class=" list-inline-item rating-item " "><span class="rating-circle">{{u_avg}}/5 </span>
                 </li>
                 <li class="list-inline-item" "> Design Rating 
             </li>
-            <li class="list-inline-item "> User Experience Rating 
+            <li class=" list-inline-item "> User Experience Rating 
             </li>
-            <li class="list-inline-item "> Design Rating
+            <li class=" list-inline-item "> Design Rating
             </li>
 
         </ul> 
     </div>
     </center>
-    <div class="row ">
-        <div class="col-sm-5 col-md-6 col-12 pb-4 ">
+    <div class=" row ">
+        <div class=" col-sm-5 col-md-6 col-12 pb-4 ">
             <h1>Comments</h1>
             {% for review in project.review_set.all %}
-            <div class="comment mt-4 text-justify float-left ">
-                <img src="{{review.profile.picture.url}} " alt=" " class="rounded-circle " width="40 " height="40 ">
+            <div class=" comment mt-4 text-justify float-left ">
+                <img src=" {{review.profile.picture.url}} " alt=" " class=" rounded-circle " width=" 40 " height=" 40 ">
                 <h4>{{ review.user}}</h4>
                 <span>{{ review.comment_time}}</span>
                 <br>
@@ -53,10 +54,10 @@
             </div>
             {% endfor%}
         </div>
-        <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4 ">
-            <form action="{%url 'review' project.id%} " method="POST ">
+        <div class=" col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4 ">
+            <form action=" {%url 'review' project.id%} " method="POST">
                 {%csrf_token%} {% bootstrap_form form%}
-                <input type="submit " class="btn btn-lg " value="Post ">
+                <button type=" submit " class=" btn btn-lg " value=" Post ">Test</button>
             </form>
             
         </div>

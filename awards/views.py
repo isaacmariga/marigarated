@@ -92,14 +92,18 @@ def review(request, id):
 	u_avg = Review.user_avg()
 
 	if request.method == 'POST':
+
 		form = ReviewForm(request.POST)
+
+		print(form)
 		if form.is_valid():
 			review = form.save(commit=False)
 			review.user = current_user
 			review.project = project
-			review.save()
-		return redirect('home')
+			form.save()
+		return redirect('review', project.id)
 	else:
+
 		form=ReviewForm()
 
 	return render(request, 'awards/review.html', {'form': form, 'id':id,'project':project,'d_avg':d_avg ,'c_avg':c_avg,'u_avg':u_avg})
@@ -113,9 +117,9 @@ def new_review(request, id):
 	if request.method == 'POST':
 		form = ReviewForm(request.POST, request.FILES)
 		if form.is_valid():
-			upload = form.save(commit=False)
-			upload.user = current_user
-			upload.save()
+			# upload = form.save(commit=False)
+			# upload.user = current_user
+			form.save()
 		return redirect('home')
 	else:
 		form=ReviewForm()
