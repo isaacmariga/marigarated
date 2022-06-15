@@ -1,43 +1,43 @@
-{% extends 'awards/base.html'%}{% load django_bootstrap5 %} {% block content %} {{block.super}}
+{% extends 'awards/base.html'%}{% load django_bootstrap5 %} {% block content %}
+{{block.super}}
 <center>
-<div class=" form col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4 " >
-    <form action="{%url 'new_project'%} " method="POST" enctype="multipart/form-data ">
-        {%csrf_token%} {% bootstrap_form form%}
-        <button type="submit " class="btn  btn-lg " value="Post "> Submit</button>
+  <div class=" form col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4 ">
+    <form action=" {%url 'new_project'%} " method="POST" enctype="multipart/form-data">
+      {%csrf_token%} {% bootstrap_form form%}
+      <button type=" submit " class=" btn btn-lg " value=" Post ">Test</button>
     </form>
-
-</div>
-
-
+  </div>
 </center>
 <style>
-.form{
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.575);
-  color: white;
-  border-radius: 5px;
-  box-shadow: 0 0 5px #c403f4, 0 0 5px #c403f4, 0 0 50px #c403f4, 0 0 25px #c403f4;
-}
+  .form {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.575);
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #c403f4, 0 0 5px #c403f4, 0 0 50px #c403f4,
+      0 0 25px #c403f4;
+  }
 
-.btn {
-        margin: 5px;
-        border-style: solid;
-        border-color: #c403f4;
-        width: fit-content;
-        padding: 10px 10px;
-        color: white;
-        font-size: 12px;
-        text-transform: uppercase;
-        transition: 0.5s;
-        letter-spacing: 4px;
-        cursor: pointer;
-    }
-    
-    .btn:hover {
-        background-color: #c403f4;
-        color: #050801;
-        box-shadow: 0 0 5px #c403f4, 0 0 25px #c403f4, 0 0 50px #c403f4, 0 0 200px #c403f4;
-    }
+  .btn {
+    margin: 5px;
+    border-style: solid;
+    border-color: #c403f4;
+    width: fit-content;
+    padding: 10px 10px;
+    color: white;
+    font-size: 12px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #c403f4;
+    color: #050801;
+    box-shadow: 0 0 5px #c403f4, 0 0 25px #c403f4, 0 0 50px #c403f4,
+      0 0 200px #c403f4;
+  }
 </style>
 
 {% endblock %}

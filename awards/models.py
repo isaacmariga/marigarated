@@ -2,6 +2,7 @@ from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Avg
+from cloudinary.models import CloudinaryField
 
 
 
@@ -10,7 +11,7 @@ from django.db.models import Avg
 
 
 class Profile(models.Model):
-	picture = models.ImageField(upload_to = 'profile_images')
+	picture = CloudinaryField('image')
 	bio = models.TextField(max_length =300)
 	user = models.ForeignKey(User,on_delete=models.CASCADE)
 
@@ -34,7 +35,7 @@ class Profile(models.Model):
 			
 class Projects(models.Model):
 	title = models.CharField(max_length =30)
-	image = models.ImageField(upload_to = 'project_images')
+	image = CloudinaryField('image')
 	description = models.TextField(max_length =300)
 	link = models.URLField(max_length=200)
 	user = models.ForeignKey(User,on_delete=models.CASCADE)
