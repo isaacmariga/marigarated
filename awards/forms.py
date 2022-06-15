@@ -19,7 +19,7 @@ class ProfileForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
   class Meta:
     model = Review
-    exclude = ['user', 'project', 'design_total']
+    exclude = ['user']
     # fields = ('design_rate',)
 
     # widget = {

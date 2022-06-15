@@ -2,6 +2,9 @@ from django.shortcuts import redirect, render
 from .models import Profile, Projects, Review
 from .forms import ProfileForm, ProjectForm, ReviewForm
 from django.contrib.auth.decorators import login_required
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer,ProjectsSerializer
 
 # Create your views here.
 
@@ -89,15 +92,13 @@ def review(request, id):
 	u_avg = Review.user_avg()
 
 	if request.method == 'POST':
-		form = ReviewForm(request.POST, request.FILES)
+		form = ReviewForm(request.POST)
 		if form.is_valid():
-			upload = form.save(commit=False)
-			upload.user = current_user
-			upload.project = Projects.get_by_id(id)
-			upload.design_total = Review.design_avg()
-			# upload.profile = current_user.profile
-			upload.save()
-		return redirect('review', project.id)
+			review = form.save(commit=False)
+			review.user = current_user
+			review.project = project
+			review.save()
+		return redirect('home')
 	else:
 		form=ReviewForm()
 
@@ -120,3 +121,15 @@ def new_review(request, id):
 		form=ReviewForm()
 
 	return render(request, 'awards/project.html', {'form': form, 'id':id, 'project':project})
+
+
+class Project(APIView):
+		def get(self, request, format=None):
+				projects = Projects.get_all()
+				serializers = ProjectsSerializer(projects, many=True)
+				return Response(serializers.data)
+class Profile(APIView):
+		def get(self, request, format=None):
+				profile = Profile.get_all()
+				serializers = ProfileSerializer(profile, many=True)
+				return Response(serializers.data)

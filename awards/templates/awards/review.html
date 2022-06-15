@@ -54,9 +54,9 @@
             {% endfor%}
         </div>
         <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4 ">
-            <form action="{%url 'review' project.id%} " method="post " enctype="multipart/form-data ">
+            <form action="{%url 'review' project.id%} " method="POST ">
                 {%csrf_token%} {% bootstrap_form form%}
-                <button type="submit " class="btn btn-success btn-lg " value="Post "> Submit</button>
+                <input type="submit " class="btn btn-lg " value="Post ">
             </form>
             
         </div>

@@ -25,6 +25,13 @@ class Profile(models.Model):
 	def get_by_user(cls, user):
 		profile = cls.objects.filter(user__username=user).first()
 		return profile
+
+
+	@classmethod
+	def get_all(cls):
+			table = Profile.objects.all()
+			return table
+			
 class Projects(models.Model):
 	title = models.CharField(max_length =30)
 	image = models.ImageField(upload_to = 'project_images')
@@ -79,7 +86,7 @@ class Review(models.Model):
 	content_rating = models.IntegerField(choices=RATING,default=0)
 	user_experience_rating = models.IntegerField(choices=RATING, default=0)
 	user = models.ForeignKey(User,on_delete=models.CASCADE, default=0)
-	# project = models.ForeignKey(Projects,on_delete=models.CASCADE, default=1)
+	project = models.ForeignKey(Projects,on_delete=models.CASCADE, default=1)
 
 
 	def __str__(self):
