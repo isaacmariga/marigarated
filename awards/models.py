@@ -87,11 +87,11 @@ RATING = (
 (10,10),
 )
 class Review(models.Model):
-	comment =models.TextField(max_length=300)
-	design_rating = models.IntegerField(choices=RATING, default=0)
-	content_rating = models.IntegerField(choices=RATING,default=0)
-	user_experience_rating = models.IntegerField(choices=RATING, default=0)
-	user = models.ForeignKey(User,on_delete=models.CASCADE, default=0)
+	comment =models.TextField(max_length=300, default = "Success")
+	design_rating = models.IntegerField(choices=RATING, default=1)
+	content_rating = models.IntegerField(choices=RATING,default=1)
+	user_experience_rating = models.IntegerField(choices=RATING, default=1)
+	user = models.ForeignKey(User,on_delete=models.CASCADE, default=1)
 	project = models.ForeignKey(Projects,on_delete=models.CASCADE, default=1)
 	profile = models.ForeignKey(Profile,on_delete=models.CASCADE, default=1)
 	date = models.DateTimeField(auto_now_add=True, blank=True, null=True)

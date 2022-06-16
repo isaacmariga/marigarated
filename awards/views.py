@@ -11,7 +11,7 @@ from .serializer import ProfileSerializer, ProjectsSerializer
 
 def home(request):
 		projects = Projects.get_all()
-		project = Projects.get_all().last()
+		project = Projects.get_all().first()
 
 		title = 'Home'
 
@@ -53,7 +53,7 @@ def search_project(request):
 def new_project(request):
 		current_user = request.user
 
-		if request.method=='POST':
+		if request.method == 'POST':
 
 				form = ProjectForm(request.POST, request.FILES)
 
@@ -61,8 +61,8 @@ def new_project(request):
 
 						upload = form.save(commit=False)
 						upload.user = current_user
-						upload.save()
 
+						upload.save()
 
 				return redirect('home')
 		else:
@@ -105,6 +105,7 @@ def review(request, id):
 						review.user = current_user
 						review.project = project
 						profiles = current_user.profile_set.values()
+
 						for profile in profiles:
 								review.profile_id = profile['id']
 								form.save()

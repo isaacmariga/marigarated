@@ -19,7 +19,9 @@
 </head>
 
 <body>
-    {% include "navbar.html"%} {% block content%}{% block scripts %} {% bootstrap_javascript %} {% endblock %}{% endblock %}
+    {% include "navbar.html"%} {% block content%}{% block scripts %} 
+    <script type="text/javascript" src="{{ STATIC_URL }} js/home.js'"></script>
+    {% bootstrap_javascript %} {% endblock %}{% endblock %}
 
 
 </body>

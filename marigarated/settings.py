@@ -84,7 +84,9 @@ INSTALLED_APPS = [
     'awards.apps.AwardsConfig',
     'django_bootstrap5',
     'rest_framework',
-    'cloudinary'
+    'cloudinary',
+    'jquery',
+
 
 
 ]

@@ -57,7 +57,7 @@
         <div class=" form col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4 ">
             <form action=" {%url 'review' project.id%} " method="POST">
                 {%csrf_token%} {% bootstrap_form form%}
-                <button type=" submit " class=" btn btn-lg " value=" Post ">Test</button>
+                <button type=" submit " id="comment_button" class=" btn btn-lg " value=" Post ">Test</button>
             </form>
             
         </div>

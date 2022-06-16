@@ -37,7 +37,7 @@
                         <div class=""> <img src="{{project.image.url}}" width="100%" height="100%" /> </div>
                         <div class="details col-12 col-lg-7">
                             <center>
-                                <h3>{{project.title}}</h2>
+                                <h3 id="test_button" onclick="myFunction()">{{project.title}}</h2>
 
                             </center>
                             <a href="{% url 'profile' project.user%} ">
@@ -66,7 +66,20 @@
 
 </div>
 
+<script type="text/javascript">
+// var clickMe = document.querySelector('#test_button');
+// clickMe.addEventListener('click', function (event) {
+//     alert("The paragraph was clicked.");
 
+
+// });
+
+
+    // $('#test_button').click(function(){
+    //   alert("The paragraph was clicked.");
+     
+    // });
+  </script>
 
 
 <style>
