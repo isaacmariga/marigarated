@@ -37,7 +37,7 @@ This is a web application will allow a user to post a project he/she has created
 ## Setup/Installation Requirements
 Here is a run through of how to set up the application:
 * Step 1 : Clone this repository using the git clone link:
-  * **`git clone https://github.com/Isaacg94/Instagram-Clone.git`**
+  * **`https://github.com/isaacmariga/marigarated.git`**
 * Step 2 : Navigate to the directory:
   * **`cd Instagram-Clone`**
 * Step 3 : Open the directory created with your favorite IDE. If Atom type **`atom .`** if VSCode type **`code .`** . This will lauch the editor with the project setup,
