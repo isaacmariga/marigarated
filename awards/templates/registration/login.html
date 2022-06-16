@@ -2,6 +2,8 @@
 <p> Incorrect Password or Username </p>
 {% endif %}
 <center>
+	<h2 style="color: white; margin-bottom: 50px;">Kindly Upload your Login Details below</h2>
+
 	<form class="form" action="/accounts/login/" method="post">
 		{% csrf_token %} {% bootstrap_form form%}
 
