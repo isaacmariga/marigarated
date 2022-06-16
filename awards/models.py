@@ -87,7 +87,7 @@ RATING = (
 (10,10),
 )
 class Review(models.Model):
-	comment =models.TextField(max_length=300, default = "Success")
+	comment =models.TextField(max_length=300, default = "Good Project")
 	design_rating = models.IntegerField(choices=RATING, default=1)
 	content_rating = models.IntegerField(choices=RATING,default=1)
 	user_experience_rating = models.IntegerField(choices=RATING, default=1)
@@ -108,20 +108,32 @@ class Review(models.Model):
 	@classmethod
 	def design_avg(cls, id):
 			table = list(Review.objects.filter(project_id=id).aggregate(Avg('design_rating')).values())
-			table = round(float("".join(map(str,table))),2)
-			return table
+			test = all( i == None for i in table)
+			if (test) == True:
+					return 1
+			else:
+					table = round(float("".join(map(str,table))),2)
+					return table
+
 
 
 	@classmethod
 	def content_avg(cls, id):
 			table = list(Review.objects.filter(project_id=id).aggregate(Avg('content_rating')).values())
-			table = round(float("".join(map(str,table))),2)
-			return table
+			test = all( i == None for i in table)
+			if (test) == True:
+					return 1
+			else:
+					table = round(float("".join(map(str,table))),2)
+					return table
 
 	@classmethod
 	def user_avg(cls, id):
 			table = list(Review.objects.filter(project_id=id).aggregate(Avg('user_experience_rating')).values())
-			table = round(float("".join(map(str,table))),2)
-			return table
-
+			test = all( i == None for i in table)
+			if (test) == True:
+					return 1
+			else:
+					table = round(float("".join(map(str,table))),2)
+					return table
 	
