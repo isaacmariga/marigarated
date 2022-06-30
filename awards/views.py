@@ -137,4 +137,4 @@ class DesignAvg(APIView):
 				# projects = Projects.get_all()
 				design_avg = Review.design_avg(id)
 				print("test--"+str(design_avg))
-				return Response({"averages":design_avg})
+				return Response({"averages":int(design_avg)})
