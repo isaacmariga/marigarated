@@ -15,7 +15,7 @@ This is a web application will allow a user to post a project he/she has created
 * View projects overall score
 * View my profile page
 
-**[Live-Link to site.](https:)**
+**[Live-Link to site.](https://marigarated.herokuapp.com/)**
 
 
 

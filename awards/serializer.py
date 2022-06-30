@@ -7,7 +7,9 @@ class ProfileSerializer(serializers.ModelSerializer):
       model = Profile
       fields = ('picture', 'bio', 'user')
 
+
 class ProjectsSerializer(serializers.ModelSerializer):
     class Meta:
       model = Projects
       fields = ('title', 'image', 'description', 'link', 'user')
+      depth = 1

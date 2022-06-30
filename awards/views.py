@@ -37,7 +37,7 @@ def profile(request, user):
 
 def search_project(request):
 		if 'search_project' in request.GET and request.GET['search_project']:
-				print('This far')
+				print(request.GET['search_project'])
 				title = request.GET.get('search_project')
 				projects = Projects.filter_by_title(title)
 				message = f'{title}'
@@ -125,7 +125,16 @@ class ProjectList(APIView):
 
 
 class ProfileList(APIView):
-		def get(self, request, format=None):
+		def get(self, request):
 				profile = Profile.get_all_profiles()
+				print("test--"+str(profile))
+
 				serializers = ProfileSerializer(profile, many=True)
 				return Response(serializers.data)
+
+class DesignAvg(APIView):
+		def get(self, request, id):
+				# projects = Projects.get_all()
+				design_avg = Review.design_avg(id)
+				print("test--"+str(design_avg))
+				return Response({"averages":design_avg})
