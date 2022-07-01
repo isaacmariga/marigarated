@@ -15,6 +15,7 @@ urlpatterns = [
   path('accounts/register/complete/', views.edit_profile,name = 'edit_profile'),
   path('api/project/', views.ProjectList.as_view()),
   path('api/profile/', views.ProfileList.as_view()),
+  path('api/text/', views.TextList.as_view()),
   path('api/design/<id>', views.DesignAvg.as_view())
 
 

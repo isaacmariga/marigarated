@@ -10,8 +10,16 @@ from cloudinary.models import CloudinaryField
 
 
 
+class Text(models.Model):
+	text = models.TextField(max_length =300)
+
+	@classmethod
+	def get_all(cls):
+			table = cls.objects.all()
+			return table
+
 class Profile(models.Model):
-	picture = CloudinaryField('image')
+	picture = CloudinaryField('image', blank=True, null=True)
 	bio = models.TextField(max_length =300)
 	user = models.ForeignKey(User,on_delete=models.CASCADE)
 

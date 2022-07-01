@@ -1,10 +1,10 @@
 from django.shortcuts import redirect, render
-from .models import Profile, Projects, Review
+from .models import Profile, Projects, Review, Text
 from .forms import ProfileForm, ProjectForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializer import ProfileSerializer, ProjectsSerializer
+from .serializer import ProfileSerializer, ProjectsSerializer, TextSerializer
 
 # Create your views here.
 
@@ -121,6 +121,12 @@ class ProjectList(APIView):
 		def get(self, request, format=None):
 				projects = Projects.get_all()
 				serializers = ProjectsSerializer(projects, many=True)
+				return Response(serializers.data)
+				
+class TextList(APIView):
+		def get(self, request, format=None):
+				text = Text.get_all()
+				serializers = TextSerializer(text, many=True)
 				return Response(serializers.data)
 
 
