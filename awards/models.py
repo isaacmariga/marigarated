@@ -11,7 +11,7 @@ from cloudinary.models import CloudinaryField
 
 
 class Text(models.Model):
-	text = models.TextField(max_length =300)
+	text = models.TextField(max_length =300, blank=True, null=True)
 
 	@classmethod
 	def get_all(cls):
