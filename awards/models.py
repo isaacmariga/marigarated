@@ -11,7 +11,7 @@ from cloudinary.models import CloudinaryField
 
 
 class Text(models.Model):
-	text = models.TextField(max_length =300, blank=True, null=True)
+	text = models.TextField(max_length =300)
 	def __str__(self):
 			return str(self.id)
 
