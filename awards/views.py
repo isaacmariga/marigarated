@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer, ProjectsSerializer, TextSerializer
-
+from rest_framework import status
 # Create your views here.
 
 
@@ -128,7 +128,12 @@ class TextList(APIView):
 				text = Text.get_all()
 				serializers = TextSerializer(text, many=True)
 				return Response(serializers.data)
-
+		def post(self, request, format=None):
+				serializers = TextSerializer(data=request.data)
+				if serializers.is_valid():
+						serializers.save()
+						return Response(serializers.data, status=status.HTTP_201_CREATED)
+				return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ProfileList(APIView):
 		def get(self, request):
