@@ -183,3 +183,10 @@ class Test3(models.Model):
 	def get_all(cls):
 			table = Test3.objects.all()
 			return table
+
+	@classmethod
+	def get_last(cls):
+			table = Test3.objects.all().last()
+			return table
+
+	

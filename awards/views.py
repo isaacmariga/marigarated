@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Profile, Projects, Review, Text
+from .models import Profile, Projects, Review, Text, Test3
 from .forms import ProfileForm, ProjectForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
@@ -12,10 +12,10 @@ from rest_framework import status
 def home(request):
 		projects = Projects.get_all()
 		project = Projects.get_all().first()
-
+		test = Test3.get_last()
 		title = 'Home'
 
-		return render(request, 'awards/home.html', {'projects': projects,  'title': title, 'project': project})
+		return render(request, 'awards/home.html', {'projects': projects,  'title': title, 'project': project,'test': test})
 
 
 def project(request, id):

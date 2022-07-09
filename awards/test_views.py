@@ -47,3 +47,10 @@ class Test3List(APIView):
 						serializers.save()
 						return Response(serializers.data, status=status.HTTP_201_CREATED)
 				return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Test3Latest(APIView):
+		def get(self, request, format=None):
+				text = Test3.get_last()
+				serializers = Test3Serializer(text)
+				return Response(serializers.data)

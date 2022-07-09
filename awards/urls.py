@@ -23,6 +23,7 @@ urlpatterns = [
   path('api/test1/', test_views.Test1List.as_view()),
   path('api/test2/', test_views.Test2List.as_view()),
   path('api/test3/', test_views.Test3List.as_view()),
+  path('api/test3last/', test_views.Test3Latest.as_view()),
 
 
 ]
