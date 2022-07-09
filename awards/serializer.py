@@ -30,6 +30,6 @@ class Test2Serializer(serializers.ModelSerializer):
       fields = ('num2',)
 class Test3Serializer(serializers.ModelSerializer):
     class Meta:
-      model = Test1
+      model = Test3
       fields = ('num1', 'num2')
 
