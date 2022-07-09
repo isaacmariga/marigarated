@@ -152,7 +152,7 @@ class Review(models.Model):
 	# Testing for medistore
 
 class Test1(models.Model):
-	num1 =models.IntegerField(blank=True, null=True)
+	num1 =models.CharField(max_length=50,blank=True, null=True)
 
 	def __str__(self):
 			return str(self.id)
@@ -163,7 +163,7 @@ class Test1(models.Model):
 			return table
 
 class Test2(models.Model):
-	num2 =models.IntegerField(blank=True, null=True)
+	num2 =models.CharField(max_length=50,blank=True, null=True)
 
 	def __str__(self):
 			return str(self.id)
@@ -173,8 +173,8 @@ class Test2(models.Model):
 			table = Test2.objects.all()
 			return table
 class Test3(models.Model):
-	num1 =models.IntegerField(blank=True, null=True)
-	num2 =models.IntegerField(blank=True, null=True)
+	num1 =models.CharField(max_length=50, blank=True, null=True)
+	num2 =models.CharField(max_length=50,blank=True, null=True)
 
 	def __str__(self):
 		return str(self.id)
