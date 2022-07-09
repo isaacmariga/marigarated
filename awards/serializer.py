@@ -22,14 +22,14 @@ class ProjectsSerializer(serializers.ModelSerializer):
 class Test1Serializer(serializers.ModelSerializer):
     class Meta:
       model = Test1
-      fields = ('test1',)
+      fields = ('num1',)
 
 class Test2Serializer(serializers.ModelSerializer):
     class Meta:
       model = Test2
-      fields = ('test2',)
+      fields = ('num2',)
 class Test3Serializer(serializers.ModelSerializer):
     class Meta:
       model = Test1
-      fields = ('test1', 'test2')
+      fields = ('num1', 'num2')
 
