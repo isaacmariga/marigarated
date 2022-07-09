@@ -147,3 +147,39 @@ class Review(models.Model):
 					table = round(float("".join(map(str,table))),2)
 					return table
 	
+
+
+	# Testing for medistore
+
+class Test1(models.Model):
+	num1 =models.IntegerField(blank=True, null=True)
+
+	def __str__(self):
+  		return str(self.id)
+
+	@classmethod
+	def get_all(cls):
+			table = Test1.objects.all()
+			return table
+
+class Test2(models.Model):
+	num2 =models.IntegerField(blank=True, null=True)
+
+	def __str__(self):
+  		return str(self.id)
+
+	@classmethod
+	def get_all(cls):
+			table = Test2.objects.all()
+			return table
+class Test3(models.Model):
+	num1 =models.IntegerField(blank=True, null=True)
+	num2 =models.IntegerField(blank=True, null=True)
+
+	def __str__(self):
+		return str(self.id)
+
+	@classmethod
+	def get_all(cls):
+			table = Test3.objects.all()
+			return table

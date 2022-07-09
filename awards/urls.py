@@ -1,5 +1,5 @@
 from django.urls import path, include
-from . import views
+from . import views, test_views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -16,7 +16,13 @@ urlpatterns = [
   path('api/project/', views.ProjectList.as_view()),
   path('api/profile/', views.ProfileList.as_view()),
   path('api/text/', views.TextList.as_view()),
-  path('api/design/<id>', views.DesignAvg.as_view())
+  path('api/design/<id>', views.DesignAvg.as_view()),
+
+
+
+  path('api/test1/', test_views.Test1List.as_view()),
+  path('api/test2/', test_views.Test2List.as_view()),
+  path('api/test3/', test_views.Test3List.as_view()),
 
 
 ]
