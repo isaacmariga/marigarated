@@ -18,6 +18,7 @@ import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from datetime import timedelta
 
 
 
@@ -41,14 +42,20 @@ if config('MODE')=='prod':
    }
 # production
 else:
- DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'marigarated',
-         'USER': 'mariga',
-        'PASSWORD':'password',
-     }
- }
+   DATABASES = {
+       'default': dj_database_url.config(
+           default=config('DATABASE_URL')
+       )
+   }
+# else:
+#  DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql',
+#          'NAME': 'marigarated',
+#          'USER': 'mariga',
+#         'PASSWORD':'password',
+#      }
+#  }
 
 
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -85,6 +92,7 @@ INSTALLED_APPS = [
     'awards.apps.AwardsConfig',
     'django_bootstrap5',
     'rest_framework',
+    'rest_framework_simplejwt',
     'cloudinary',
     'jquery',
     'corsheaders',
@@ -201,3 +209,26 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
     'django.contrib.auth.hashers.ScryptPasswordHasher',
 ]
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'NON_FIELD_ERRORS_KEY': 'global',
+}
+
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': timedelta(days=2),
+}
+
+ALLOWED_HOSTS=['*']
+CORS_ORIGIN_ALLOW_ALL = True
