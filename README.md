@@ -1,6 +1,4 @@
-### Author
-
-**[Isaac Wangombe.](https://github.com/isaacmariga) 16/07/2022.**
+# Marigarated
 
 ## Description
 
@@ -10,6 +8,10 @@ This is a web application will allow a user to post a project he/she has created
 
 ![Alt text](/static/images/rated.png)
 
+## Demo
+
+You can demo the site **[here.](https://marigarated.herokuapp.com/)**
+
 ## Features
 
 - View posted projects and their details
@@ -18,8 +20,6 @@ This is a web application will allow a user to post a project he/she has created
 - Search for projects
 - View projects overall score
 - View my profile page
-
-**[Live-Link to site.](https://marigarated.herokuapp.com/)**
 
 # Specifications
 
@@ -57,6 +57,10 @@ Here is a run through of how to set up the application:
 - HTML, CSS and Bootstrap
 - Postgressql
 - Heroku
+
+### Author
+
+**[Isaac Wangombe.](https://github.com/isaacmariga) 16/07/2022.**
 
 ## Support and contact details
 
